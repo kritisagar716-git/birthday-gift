@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Boyfriend's Day!</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loading-content">
+      <div class="loading-heart">
+        <span>❤️</span>
+      </div>
+      <h2>Making something special...</h2>
+      <div class="loading-bar">
+        <div class="loading-progress"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background particles -->
+  <div id="particles" class="particles">
+    <!-- Floating hearts will be added by JS -->
+  </div>
+  <div id="stars" class="stars">
+    <!-- Floating stars will be added by JS -->
+  </div>
+
+  <!-- Mute/Unmute Button -->
+  <button id="mute-toggle" class="mute-toggle" aria-label="Toggle music">
+    <span id="mute-icon">🔊</span>
+  </button>
+
+  <!-- All Screens -->
+  <main class="container">
+    
+    <!-- SCREEN 1: Password Lock -->
+    <section id="screen-1" class="screen active">
+      <div class="password-container">
+        <!-- Tilted Polaroid on Left -->
+        <div class="polaroid-wrapper">
+          <div class="polaroid tilted">
+            <img src="assets/photos/polaroid.jpg" alt="Special memory" onerror="this.src='https://via.placeholder.com/300x350/f7e7d3/8c7b75?text=Your+Photo+Here'">
+            <div class="polaroid-caption">For my cutie~ always</div>
+          </div>
+        </div>
+        
+        <!-- Keypad on Right -->
+        <div class="keypad-wrapper">
+          <div class="phone-keypad">
+            <h2 class="keypad-title">Enter the code</h2>
+            <!-- Password Dots -->
+            <div class="password-dots">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <!-- Keypad Buttons -->
+            <div class="keypad">
+              <button class="key" data-key="1">1</button>
+              <button class="key" data-key="2">2</button>
+              <button class="key" data-key="3">3</button>
+              <button class="key" data-key="4">4</button>
+              <button class="key" data-key="5">5</button>
+              <button class="key" data-key="6">6</button>
+              <button class="key" data-key="7">7</button>
+              <button class="key" data-key="8">8</button>
+              <button class="key" data-key="9">9</button>
+              <button class="key key-special" data-key="*">*</button>
+              <button class="key" data-key="0">0</button>
+              <button class="key key-special" data-key="#">#</button>
+            </div>
+            <button id="clear-btn" class="clear-btn">Clear</button>
+          </div>
+        </div>
+      </div>
+      <button class="next-btn hidden" id="next-1">→</button>
+    </section>
+
+    <!-- SCREEN 2: Intro -->
+    <section id="screen-2" class="screen">
+      <div class="intro-container">
+        <div class="intro-content">
+          <h1 id="screen2-heading" class="intro-text"></h1>
+          <div class="cat-illustration">
+            <span class="cat">🐱</span>
+            <span class="heart">❤️</span>
+            <span class="cat">🐱</span>
+          </div>
+          <div class="intro-buttons">
+            <button id="yes-btn" class="yes-btn">YES!</button>
+            <button id="no-btn" class="no-btn">NO</button>
+          </div>
+        </div>
+      </div>
+      <button class="next-btn hidden" id="next-2">→</button>
+    </section>
+
+    <!-- SCREEN 3: Bouquet Picker -->
+    <section id="screen-3" class="screen">
+      <div class="bouquet-container">
+          <h1 class="bouquet-heading">Pick a lil bouquet for my cutie~</h1>
+        <div class="bouquets">
+          <div class="bouquet-item" data-bouquet="0">
+            <div class="bouquet">
+              <img class="bouquet-img" id="bouquet-img-0" src="assets/photos/bouquet1.jpg" alt="Bouquet 1" onerror="this.src='https://via.placeholder.com/260x300/ffd3b6/8c7b75?text=Your+Bouquet+1'">
+            </div>
+            <div class="bouquet-note hidden">
+              <p id="note-0"></p>
+            </div>
+          </div>
+          <div class="bouquet-item" data-bouquet="1">
+            <div class="bouquet">
+              <img class="bouquet-img" id="bouquet-img-1" src="assets/photos/bouquet2.jpg" alt="Bouquet 2" onerror="this.src='https://via.placeholder.com/260x300/f8e1e7/8c7b75?text=Your+Bouquet+2'">
+            </div>
+            <div class="bouquet-note hidden">
+              <p id="note-1"></p>
+            </div>
+          </div>
+          <div class="bouquet-item" data-bouquet="2">
+            <div class="bouquet">
+              <img class="bouquet-img" id="bouquet-img-2" src="assets/photos/bouquet3.jpg" alt="Bouquet 3" onerror="this.src='https://via.placeholder.com/260x300/dcedc1/8c7b75?text=Your+Bouquet+3'">
+            </div>
+            <div class="bouquet-note hidden">
+              <p id="note-2"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="next-btn hidden" id="next-3">→</button>
+    </section>
+
+    <!-- SCREEN 4: Music Player -->
+    <section id="screen-4" class="screen">
+      <div class="music-container">
+        <div class="music-card">
+          <div class="album-art">
+            <img id="album-art-img" src="assets/photos/album-art.jpg" alt="Album Art" onerror="this.src='https://via.placeholder.com/300x300/f8e1e7/8c7b75?text=Album+Art'">
+            <div class="vinyl-disc"></div>
+          </div>
+          <h2 id="song-title" class="song-title"></h2>
+          <div class="progress-container">
+            <div class="progress-bar">
+              <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <div class="time-info">
+              <span id="current-time">0:00</span>
+              <span id="total-time">0:00</span>
+            </div>
+          </div>
+          <div class="controls">
+            <button id="prev-btn" class="control-btn">⏮</button>
+            <button id="play-btn" class="control-btn play-btn">▶</button>
+            <button id="next-btn-music" class="control-btn">⏭</button>
+          </div>
+        </div>
+      </div>
+      <button class="next-btn" id="next-4">→</button>
+    </section>
+
+    <!-- SCREEN 5: Love Letter -->
+    <section id="screen-5" class="screen">
+      <div class="letter-container">
+        <div id="envelope" class="envelope">
+          <div class="wax-seal" id="wax-seal">
+            <span class="seal-heart">❤️</span>
+          </div>
+          <div class="envelope-front">
+            <p>Click the seal to open...</p>
+          </div>
+          <div class="letter-paper">
+            <div class="letter-content">
+              <pre id="letter-text"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="next-btn hidden" id="next-5">→</button>
+    </section>
+
+    <!-- SCREEN 6: Photo Gallery -->
+    <section id="screen-6" class="screen">
+      <div class="gallery-container">
+        <h1 class="gallery-heading">Our silliest & sweetest memories~</h1>
+        <div class="photo-gallery">
+          <div class="photo-frame" data-photo="0">
+            <img id="gallery-img-0" src="assets/photos/photo1.jpg" alt="Memory 1" onerror="this.src='https://via.placeholder.com/250x300/f4e06a/8c7b75?text=Photo+1'">
+            <div class="photo-caption" id="caption-0"></div>
+          </div>
+          <div class="photo-frame" data-photo="1">
+            <img id="gallery-img-1" src="assets/photos/photo2.jpg" alt="Memory 2" onerror="this.src='https://via.placeholder.com/250x300/f4e06a/8c7b75?text=Photo+2'">
+            <div class="photo-caption" id="caption-1"></div>
+          </div>
+          <div class="photo-frame" data-photo="2">
+            <img id="gallery-img-2" src="assets/photos/photo3.jpg" alt="Memory 3" onerror="this.src='https://via.placeholder.com/250x300/f4e06a/8c7b75?text=Photo+3'">
+            <div class="photo-caption" id="caption-2"></div>
+          </div>
+        </div>
+        <button id="back-gallery" class="back-btn">← Back</button>
+      </div>
+      <!-- Lightbox -->
+      <div id="lightbox" class="lightbox hidden">
+        <img id="lightbox-img" src="" alt="Full view">
+        <button id="close-lightbox" class="close-lightbox">×</button>
+      </div>
+      <button class="next-btn" id="next-6">→</button>
+    </section>
+
+    <!-- SCREEN 7: Certificate -->
+    <section id="screen-7" class="screen">
+      <div class="certificate-container">
+        <div id="certificate" class="certificate">
+          <div class="sunburst"></div>
+          <div class="certificate-border">
+            <h2 class="congrats-text" id="congrats-text"></h2>
+            <h1 class="award-title" id="award-title"></h1>
+            <div class="circle-frame">
+              <img id="circle-photo" src="assets/photos/circle.jpg" alt="Him" onerror="this.src='https://via.placeholder.com/200x200/ffd93b/8c7b75?text=Photo'">
+            </div>
+            <p class="presented-to">Presented to</p>
+            <h2 class="his-name" id="his-name-cert"></h2>
+            <p class="with-love">With all the squishy love~ - <span id="my-name-cert"></span></p>
+          </div>
+        </div>
+      </div>
+      <button class="next-btn" id="next-7">→</button>
+    </section>
+
+    <!-- SCREEN 8: Final Message -->
+    <section id="screen-8" class="screen">
+      <div class="final-container">
+        <div class="polaroid-card">
+          <div class="polaroid-inner">
+            <img src="assets/photos/final.jpg" alt="Final memory" onerror="this.src='https://via.placeholder.com/320x380/f7e7d3/8c7b75?text=Love+You'">
+          </div>
+          <p id="final-message" class="final-text"></p>
+        </div>
+        <button id="replay-btn" class="replay-btn">🔄 Replay</button>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
